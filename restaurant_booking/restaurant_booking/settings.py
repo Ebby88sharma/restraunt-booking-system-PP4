@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-gu84yp^44p8b!4#jleeu(q&uyz6^)n_htrtx=ljed(9+(&wux_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['restraunt-booking-system-pp-4.vercel.app', '127.0.0.1']
 

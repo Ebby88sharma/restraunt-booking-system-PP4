@@ -1,4 +1,4 @@
-from django.http import JsonResponse
+from django.http import HttpResponse
 
 def home(request):
-    return JsonResponse({"message": "Hello, Vercel deployment is working!"})
+    return HttpResponse("Hello, this is a test!")
