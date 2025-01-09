@@ -4,9 +4,13 @@ import os
 import sys
 from django.core.wsgi import get_wsgi_application
 
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'restaurant_booking.settings')
+
+# Vercel-specific: Expose WSGI app
+app = get_wsgi_application()
+
 def main():
     """Run administrative tasks."""
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'restaurant_booking.settings')
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
@@ -19,6 +23,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-# Expose WSGI app for Vercel
-app = get_wsgi_application()
