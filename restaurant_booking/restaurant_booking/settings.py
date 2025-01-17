@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 import os
 from pathlib import Path
-
+import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -83,14 +83,7 @@ WSGI_APPLICATION = 'restaurant_booking.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',  # Use the correct database engine
-        'NAME': 'restaurant_booking',         # Your database name
-        'USER': 'abc',                       # Your database user
-        'PASSWORD': 'sharma',          # Your database password
-        'HOST': '127.0.0.1',                  # Use localhost or the database host
-        'PORT': '3306',                       # Default MySQL port
-    }
+    'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
 }
 
 
