@@ -83,10 +83,15 @@ WSGI_APPLICATION = 'restaurant_booking.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',  # Use the correct database engine
+        'NAME': 'restaurant_booking',         # Your database name
+        'USER': 'abc',                       # Your database user
+        'PASSWORD': 'sharma',          # Your database password
+        'HOST': '127.0.0.1',                  # Use localhost or the database host
+        'PORT': '3306',                       # Default MySQL port
     }
 }
+
 
 
 # Password validation
