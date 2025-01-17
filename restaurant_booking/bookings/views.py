@@ -10,4 +10,4 @@ def tables(request):
 
 def reservations(request):
     reservations = Reservation.objects.all()
-    return render(request, 'reservations.html', {'reservations': reservations})
+    return render(request, 'reservation.html', {'reservations': reservations})

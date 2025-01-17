@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,12 +6,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 
 <body>
-    <h1>Welcome to the Restaurant Booking System</h1>
-    <a href="/tables/">View Tables</a>
-    <a href="/reservations/">View Reservations</a>
+    <header>
+        <h1>Welcome to Our Restaurant</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="/tables/">View Tables</a></li>
+            <li><a href="/reservations/">View Reservations</a></li>
+        </ul>
+    </nav>
+    <footer>
+        <p>&copy; 2025 Restaurant Booking System</p>
+    </footer>
 </body>
 
 </html>
