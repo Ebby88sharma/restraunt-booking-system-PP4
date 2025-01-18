@@ -5,32 +5,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Available Tables</title>
+    <title>Tables</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 
 <body>
     <header>
-        <h1>Available Tables</h1>
+        <h1>Tables</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/tables/">Tables</a></li>
+                <li><a href="/reservations/">Reservations</a></li>
+            </ul>
+        </nav>
     </header>
+
     <main>
+        <h2>Available Tables</h2>
         <ul>
             {% for table in tables %}
-            <li>
-                Table <strong>{{ table.number }}</strong> (Capacity: {{ table.capacity }}) -
-                {% if table.is_available %}
-                <span class="available">Available</span>
-                {% else %}
-                <span class="not-available">Not Available</span>
-                {% endif %}
+            <li>Table {{ table.number }} (Capacity: {{ table.capacity }}) -
+                {% if table.is_available %}Available{% else %}Booked{% endif %}
             </li>
-            {% empty %}
-            <li>No tables available at the moment.</li>
             {% endfor %}
         </ul>
     </main>
+
     <footer>
-        <a href="/">Back to Home</a>
+        <p>&copy; 2025 Restaurant Booking System</p>
     </footer>
 </body>
 

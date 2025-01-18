@@ -11,26 +11,30 @@
 
 <body>
     <header>
-        <h1>Your Reservations</h1>
-    </header>
-    <main>
-        <section>
+        <h1>Reservations</h1>
+        <nav>
             <ul>
-                {% for reservation in reservations %}
-                <li>
-                    <strong>{{ reservation.customer.name }}</strong> reserved Table
-                    <strong>{{ reservation.table.number }}</strong> on
-                    <strong>{{ reservation.date }}</strong> at
-                    <strong>{{ reservation.time }}</strong>.
-                </li>
-                {% empty %}
-                <li>No reservations found. <a href="/">Go back home</a></li>
-                {% endfor %}
+                <li><a href="/">Home</a></li>
+                <li><a href="/tables/">Tables</a></li>
+                <li><a href="/reservations/">Reservations</a></li>
             </ul>
-        </section>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Upcoming Reservations</h2>
+        <ul>
+            {% for reservation in reservations %}
+            <li>
+                {{ reservation.customer.name }} booked Table {{ reservation.table.number }} on {{ reservation.date }} at
+                {{ reservation.time }}
+            </li>
+            {% endfor %}
+        </ul>
     </main>
+
     <footer>
-        <a href="/">Back to Home</a>
+        <p>&copy; 2025 Restaurant Booking System</p>
     </footer>
 </body>
 
