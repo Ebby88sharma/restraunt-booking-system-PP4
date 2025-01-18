@@ -5,3 +5,11 @@ class ReservationForm(forms.ModelForm):
     class Meta:
         model = Reservation
         fields = ['customer', 'table', 'date', 'time']
+class BookingForm(forms.ModelForm):
+    class Meta:
+        model = Reservation
+        fields = ['customer', 'table', 'date', 'time']
+        widgets = {
+            'date': forms.DateInput(attrs={'type': 'date'}),
+            'time': forms.TimeInput(attrs={'type': 'time'}),
+        }

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Table, Reservation, Customer
-from .forms import ReservationForm
+from .forms import BookingForm, ReservationForm
 
 def home(request):
     return render(request, 'home.html')
@@ -38,3 +38,22 @@ def delete_reservation(request, pk):
     reservation = get_object_or_404(Reservation, pk=pk)
     reservation.delete()
     return redirect('reservations')
+
+def book_table(request):
+    if request.method == 'POST':
+        form = BookingForm(request.POST)
+        if form.is_valid():
+            # Check for double bookings
+            table = form.cleaned_data['table']
+            date = form.cleaned_data['date']
+            time = form.cleaned_data['time']
+            if Reservation.objects.filter(table=table, date=date, time=time).exists():
+                return render(request, 'book_table.html', {
+                    'form': form,
+                    'error': 'This table is already booked at the selected time.'
+                })
+            form.save()
+            return redirect('reservations')  # Redirect to the reservations page
+    else:
+        form = BookingForm()
+    return render(request, 'book_table.html', {'form': form})
