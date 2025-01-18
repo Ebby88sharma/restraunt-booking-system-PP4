@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 
 class Table(models.Model):
     number = models.IntegerField(unique=True)
@@ -21,6 +22,19 @@ class Reservation(models.Model):
     date = models.DateField()
     time = models.TimeField()
     created_at = models.DateTimeField(auto_now_add=True)
+
+    def clean(self):
+        overlapping_reservations = Reservation.objects.filter(
+            table=self.table,
+            date=self.date,
+            time=self.time
+        )
+        if overlapping_reservations.exists():
+            raise ValidationError(f"Table {self.table.number} is already booked for this time.")
+
+    def save(self, *args, **kwargs):
+        self.clean()
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"Reservation by {self.customer.name} on {self.date} at {self.time}"
