@@ -11,19 +11,23 @@
 
 <body>
     <header>
-        <h1>Reservations</h1>
+        <h1>Your Reservations</h1>
     </header>
     <main>
-        <ul>
-            {% for reservation in reservations %}
-            <li>
-                <strong>{{ reservation.customer.name }}</strong> reserved Table
-                <strong>{{ reservation.table.number }}</strong> on
-                <strong>{{ reservation.date }}</strong> at
-                <strong>{{ reservation.time }}</strong>
-            </li>
-            {% endfor %}
-        </ul>
+        <section>
+            <ul>
+                {% for reservation in reservations %}
+                <li>
+                    <strong>{{ reservation.customer.name }}</strong> reserved Table
+                    <strong>{{ reservation.table.number }}</strong> on
+                    <strong>{{ reservation.date }}</strong> at
+                    <strong>{{ reservation.time }}</strong>.
+                </li>
+                {% empty %}
+                <li>No reservations found. <a href="/">Go back home</a></li>
+                {% endfor %}
+            </ul>
+        </section>
     </main>
     <footer>
         <a href="/">Back to Home</a>
